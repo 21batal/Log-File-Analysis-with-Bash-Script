@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOGFILE="access.log"  # Replace with your actual log file name
+LOGFILE="access.log"  
 
 # 1. Request Counts
 total_requests=$(wc -l < "$LOGFILE")
@@ -52,7 +52,7 @@ grep '"POST ' "$LOGFILE" | awk '{print $1}' | sort | uniq -c | sort -nr | head -
 echo "Failure patterns by hour:"
 awk '$9 ~ /^4|^5/ {split($4, d, ":"); hour=d[2]; fail[hour]++} END {for (h in fail) print h, fail[h]}' "$LOGFILE" | sort
 
-# Summary Output
+# Summary 
 echo "========== SUMMARY =========="
 echo "Total Requests: $total_requests"
 echo "GET Requests: $get_requests"
